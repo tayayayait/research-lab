@@ -1,0 +1,268 @@
+/* ============================================================================
+   Google Fonts Import
+   Premium Modern Sans: Manrope (Geometric, Clean)
+   Base Sans: Inter (Readability)
+   Serif Accents: Noto Serif KR (Elegant)
+   ============================================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&family=Noto+Serif+KR:wght@400;700&display=swap');
+
+@import "tailwindcss";
+
+/* ============================================================================
+   Design Tokens (Premium Hybrid Spec)
+   Base: Allen AI (Teal/Cream) + Accent: Meta (Blue) & Modern (Pink)
+   ============================================================================ */
+:root {
+  /* Brand Colors */
+  --color-primary: #0A3235;
+  /* Dark Teal - Heritage & Trust */
+  --color-accent: #0064E0;
+  /* Meta Blue - Action & Link */
+  --color-highlight: #F0529C;
+  /* Hot Pink - Modern Edge */
+  --color-highlight-dim: rgba(240, 82, 156, 0.1);
+
+  /* Background Colors */
+  --color-bg-base: #FAF2E9;
+  /* Cream White - Premium Paper feel */
+  --color-bg-surface: #FFFFFF;
+  /* Pure White - Cards */
+  --color-bg-subtle: #F0EAE2;
+  /* Darker Cream - Sections */
+
+  /* Text Colors */
+  --color-text-main: #032629;
+  /* Near Black Teal */
+  --color-text-sub: #546A6C;
+  /* Muted Teal Gray */
+  --color-text-inverse: #FFFFFF;
+
+  /* UI Elements */
+  --color-border: rgba(10, 50, 53, 0.08);
+  --color-border-devider: rgba(10, 50, 53, 0.15);
+
+  /* Status */
+  --color-success: #059669;
+  --color-warning: #D97706;
+  --color-error: #DC2626;
+
+  /* Glassmorphism Variables */
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.4);
+  --glass-shadow: 0 8px 32px rgba(10, 50, 53, 0.05);
+
+  /* Dimensions */
+  --radius-card: 32px;
+  /* Extreme Round (Allen AI Style) */
+  --radius-pill: 9999px;
+  --container-max: 1320px;
+}
+
+/* ============================================================================
+   Tailwind 4 Theme Configuration
+   ============================================================================ */
+@theme inline {
+  /* Colors - Semantic Naming */
+  --color-brand-primary: var(--color-primary);
+  --color-brand-accent: var(--color-accent);
+  --color-brand-highlight: var(--color-highlight);
+
+  --color-bg-base: var(--color-bg-base);
+  --color-bg-surface: var(--color-bg-surface);
+  --color-bg-subtle: var(--color-bg-subtle);
+
+  --color-text-main: var(--color-text-main);
+  --color-text-sub: var(--color-text-sub);
+  --color-text-inverse: var(--color-text-inverse);
+
+  --color-border-base: var(--color-border);
+
+  /* Fonts */
+  /* Display: Impactful Geometric Sans */
+  --font-display: 'Manrope', system-ui, sans-serif;
+  /* Body: Highly Readable Sans */
+  --font-body: 'Inter', system-ui, sans-serif;
+  /* Serif: Editorial Accents */
+  --font-serif: 'Noto Serif KR', serif;
+
+  /* Spacing & Sizes */
+  --spacing-section: 120px;
+  --spacing-container: var(--container-max);
+
+  /* Radius */
+  --radius-card: var(--radius-card);
+  --radius-pill: var(--radius-pill);
+
+  /* Shadows */
+  --shadow-soft: 0 4px 20px rgba(10, 50, 53, 0.04);
+  --shadow-medium: 0 12px 40px rgba(10, 50, 53, 0.08);
+  --shadow-floating: 0 20px 60px rgba(10, 50, 53, 0.12);
+  --shadow-glow: 0 0 40px rgba(240, 82, 156, 0.2);
+}
+
+/* ============================================================================
+   Base Styles (Reset)
+   ============================================================================ */
+body {
+  background-color: var(--color-bg-base);
+  color: var(--color-text-main);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  /* Extra Bold for impact */
+  color: var(--color-text-main);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+/* Typography Utility Classes */
+.text-display {
+  font-size: clamp(3.5rem, 5vw, 6rem);
+  /* 56px ~ 96px */
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+
+.text-h1 {
+  font-size: clamp(2.5rem, 4vw, 4rem);
+  /* 40px ~ 64px */
+  font-weight: 700;
+}
+
+.text-h2 {
+  font-size: clamp(2rem, 3vw, 2.5rem);
+  /* 32px ~ 40px */
+  font-weight: 600;
+}
+
+.text-body-lg {
+  font-size: 1.25rem;
+  /* 20px */
+  line-height: 1.7;
+  color: var(--color-text-sub);
+}
+
+/* ============================================================================
+   Component Utilities
+   ============================================================================ */
+
+/* Container */
+.container-premium {
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+@media (min-width: 768px) {
+  .container-premium {
+    padding: 0 40px;
+  }
+}
+
+/* Glassmorphism */
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+}
+
+/* Card Base */
+.card-base {
+  background: var(--color-bg-surface);
+  border-radius: var(--radius-card);
+  border: 1px solid var(--color-border);
+  transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.card-base:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-medium);
+  border-color: rgba(240, 82, 156, 0.3);
+  /* Pink hint on hover */
+}
+
+/* Button Base */
+.btn-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-display);
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+/* Animations */
+@keyframes fadeInSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-enter {
+  animation: fadeInSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+  /* Start hidden */
+}
+
+.delay-100 {
+  animation-delay: 100ms;
+}
+
+.delay-200 {
+  animation-delay: 200ms;
+}
+
+.delay-300 {
+  animation-delay: 300ms;
+}
+
+.delay-400 {
+  animation-delay: 400ms;
+}
+
+.delay-500 {
+  animation-delay: 500ms;
+}
+
+/* Grid Background Pattern (Optional) */
+.bg-grid-pattern {
+  background-image: linear-gradient(to right, rgba(10, 50, 53, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(10, 50, 53, 0.03) 1px, transparent 1px);
+  background-size: 80px 80px;
+}
+
+/* Scrollbar Hide Utility */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}

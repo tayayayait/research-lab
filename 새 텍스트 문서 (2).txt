@@ -1,0 +1,1085 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ============================================================================
+  연구소 홈페이지 UI/UX 상세 명세서 (XML Schema)
+  Research Institute Website UI/UX Detailed Specification
+  Version: 1.0
+  Last Updated: 2026-01-12
+  ============================================================================
+-->
+<UIUXSpecification xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <!-- ========================================================================
+       1. 디자인 철학 (Design Philosophy)
+       ======================================================================== -->
+  <DesignPhilosophy>
+    <Concept>Modern Academic (현대적 학구주의)</Concept>
+    <Description>
+      기존 연구소의 권위와 신뢰감(Serif 폰트, 차분한 색상)을 유지하되,
+      최첨단 AI 기술(Sans-serif, Pill 버튼, 인터랙션)을 접목하여 혁신적인 이미지를 전달합니다.
+    </Description>
+    <Keywords>
+      <Keyword>Minimalist</Keyword>
+      <Keyword>Academic</Keyword>
+      <Keyword>High-Tech</Keyword>
+      <Keyword>Trustworthy</Keyword>
+      <Keyword>Innovative</Keyword>
+    </Keywords>
+  </DesignPhilosophy>
+
+  <!-- ========================================================================
+       2. 색상 팔레트 (Color Palette)
+       ======================================================================== -->
+  <ColorPalette>
+    <Guideline>
+      눈의 피로를 줄이고 장문의 텍스트 가독성을 극대화하기 위해 완전한 흰색(#FFFFFF) 사용을 지양합니다.
+    </Guideline>
+
+    <!-- Primary Colors -->
+    <ColorGroup name="Primary" description="주조색">
+      <Color>
+        <Name>Deep Navy</Name>
+        <HexCode>#0F172A</HexCode>
+        <TailwindClass>slate-900</TailwindClass>
+        <Emotion>신뢰, 권위</Emotion>
+        <Usage>
+          <UseCase>헤더</UseCase>
+          <UseCase>푸터</UseCase>
+          <UseCase>주요 텍스트(제목)</UseCase>
+          <UseCase>강조 영역</UseCase>
+        </Usage>
+      </Color>
+    </ColorGroup>
+
+    <!-- Secondary Colors -->
+    <ColorGroup name="Secondary" description="보조색">
+      <Color>
+        <Name>Soft Taupe Gray</Name>
+        <HexCode>#64748B</HexCode>
+        <TailwindClass>slate-500</TailwindClass>
+        <Emotion>안정감</Emotion>
+        <Usage>
+          <UseCase>본문 텍스트</UseCase>
+          <UseCase>보조 설명</UseCase>
+          <UseCase>비활성 아이콘</UseCase>
+        </Usage>
+      </Color>
+    </ColorGroup>
+
+    <!-- Background Colors -->
+    <ColorGroup name="Background" description="배경색">
+      <Color>
+        <Name>Warm Cream</Name>
+        <HexCode>#F9F7F2</HexCode>
+        <TailwindClass>custom-cream</TailwindClass>
+        <Emotion>지적인 분위기</Emotion>
+        <Reference>Anthropic, AllenAI 스타일</Reference>
+        <Usage>
+          <UseCase>페이지 메인 배경</UseCase>
+        </Usage>
+      </Color>
+      <Color>
+        <Name>Clean Light Gray</Name>
+        <HexCode>#F1F5F9</HexCode>
+        <TailwindClass>slate-100</TailwindClass>
+        <Emotion>구분, 정돈</Emotion>
+        <Usage>
+          <UseCase>섹션 구분 배경</UseCase>
+          <UseCase>카드 호버 상태</UseCase>
+        </Usage>
+      </Color>
+    </ColorGroup>
+
+    <!-- Accent Colors -->
+    <ColorGroup name="Accent" description="포인트 컬러">
+      <Color>
+        <Name>AI Blue</Name>
+        <HexCode>#3B82F6</HexCode>
+        <TailwindClass>blue-500</TailwindClass>
+        <Emotion>혁신, 기술</Emotion>
+        <Usage>
+          <UseCase>Primary 버튼</UseCase>
+          <UseCase>링크 텍스트</UseCase>
+          <UseCase>챗봇 트리거 버튼</UseCase>
+          <UseCase>활성 상태 표시</UseCase>
+        </Usage>
+      </Color>
+      <Color>
+        <Name>Success Green</Name>
+        <HexCode>#22C55E</HexCode>
+        <TailwindClass>green-500</TailwindClass>
+        <Emotion>성공, 완료</Emotion>
+        <Usage>
+          <UseCase>성공 메시지</UseCase>
+          <UseCase>완료 상태 표시</UseCase>
+        </Usage>
+      </Color>
+      <Color>
+        <Name>Alert Red</Name>
+        <HexCode>#EF4444</HexCode>
+        <TailwindClass>red-500</TailwindClass>
+        <Emotion>경고, 오류</Emotion>
+        <Usage>
+          <UseCase>에러 메시지</UseCase>
+          <UseCase>삭제 버튼</UseCase>
+          <UseCase>필수 입력 표시</UseCase>
+        </Usage>
+      </Color>
+      <Color>
+        <Name>Warning Amber</Name>
+        <HexCode>#F59E0B</HexCode>
+        <TailwindClass>amber-500</TailwindClass>
+        <Emotion>주의</Emotion>
+        <Usage>
+          <UseCase>경고 알림</UseCase>
+          <UseCase>진행 중 상태</UseCase>
+        </Usage>
+      </Color>
+    </ColorGroup>
+  </ColorPalette>
+
+  <!-- ========================================================================
+       3. 타이포그래피 (Typography)
+       ======================================================================== -->
+  <Typography>
+    <Guideline>국문 가독성과 영문 심미성을 모두 고려합니다.</Guideline>
+
+    <!-- Font Families -->
+    <FontFamilies>
+      <FontFamily role="Headings" description="제목용">
+        <EnglishFont>Merriweather</EnglishFont>
+        <KoreanFont>Noto Serif KR</KoreanFont>
+        <FontType>Serif</FontType>
+        <Rationale>권위 있고 진중한 느낌을 주기 위해 Serif 서체를 사용합니다.</Rationale>
+        <GoogleFontsImport>
+          <![CDATA[
+            @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Noto+Serif+KR:wght@400;700&display=swap');
+          ]]>
+        </GoogleFontsImport>
+      </FontFamily>
+      <FontFamily role="Body" description="본문용">
+        <EnglishFont>Inter</EnglishFont>
+        <KoreanFont>Pretendard</KoreanFont>
+        <FontType>Sans-serif</FontType>
+        <Rationale>모바일 및 웹 가독성이 뛰어난 산세리프(Sans-serif)를 사용합니다.</Rationale>
+        <GoogleFontsImport>
+          <![CDATA[
+            @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+          ]]>
+        </GoogleFontsImport>
+        <CDNImport>
+          <![CDATA[
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
+          ]]>
+        </CDNImport>
+      </FontFamily>
+    </FontFamilies>
+
+    <!-- Type Scale -->
+    <TypeScale platform="Desktop">
+      <TypeStyle name="H1" description="Hero Title">
+        <FontSize unit="px">48</FontSize>
+        <FontWeight>700</FontWeight>
+        <LineHeight>1.2</LineHeight>
+        <LetterSpacing>-0.02em</LetterSpacing>
+        <FontFamily>Headings</FontFamily>
+        <CSSClass>text-5xl font-bold leading-tight</CSSClass>
+      </TypeStyle>
+      <TypeStyle name="H2" description="Section Title">
+        <FontSize unit="px">32</FontSize>
+        <FontWeight>700</FontWeight>
+        <LineHeight>1.3</LineHeight>
+        <LetterSpacing>-0.01em</LetterSpacing>
+        <FontFamily>Headings</FontFamily>
+        <CSSClass>text-3xl font-bold leading-snug</CSSClass>
+      </TypeStyle>
+      <TypeStyle name="H3" description="Card Title">
+        <FontSize unit="px">24</FontSize>
+        <FontWeight>600</FontWeight>
+        <LineHeight>1.4</LineHeight>
+        <LetterSpacing>normal</LetterSpacing>
+        <FontFamily>Headings</FontFamily>
+        <CSSClass>text-2xl font-semibold leading-normal</CSSClass>
+      </TypeStyle>
+      <TypeStyle name="H4" description="Subsection Title">
+        <FontSize unit="px">20</FontSize>
+        <FontWeight>600</FontWeight>
+        <LineHeight>1.4</LineHeight>
+        <LetterSpacing>normal</LetterSpacing>
+        <FontFamily>Headings</FontFamily>
+        <CSSClass>text-xl font-semibold</CSSClass>
+      </TypeStyle>
+      <TypeStyle name="Body1" description="본문 주요">
+        <FontSize unit="px">18</FontSize>
+        <FontWeight>400</FontWeight>
+        <LineHeight>1.6</LineHeight>
+        <LetterSpacing>normal</LetterSpacing>
+        <FontFamily>Body</FontFamily>
+        <CSSClass>text-lg font-normal leading-relaxed</CSSClass>
+      </TypeStyle>
+      <TypeStyle name="Body2" description="본문 보조">
+        <FontSize unit="px">16</FontSize>
+        <FontWeight>400</FontWeight>
+        <LineHeight>1.6</LineHeight>
+        <LetterSpacing>normal</LetterSpacing>
+        <FontFamily>Body</FontFamily>
+        <CSSClass>text-base font-normal leading-relaxed</CSSClass>
+      </TypeStyle>
+      <TypeStyle name="Caption" description="캡션/메타정보">
+        <FontSize unit="px">14</FontSize>
+        <FontWeight>500</FontWeight>
+        <LineHeight>1.5</LineHeight>
+        <LetterSpacing>normal</LetterSpacing>
+        <FontFamily>Body</FontFamily>
+        <Color>#64748B</Color>
+        <CSSClass>text-sm font-medium text-slate-500</CSSClass>
+      </TypeStyle>
+      <TypeStyle name="Small" description="작은 텍스트">
+        <FontSize unit="px">12</FontSize>
+        <FontWeight>400</FontWeight>
+        <LineHeight>1.5</LineHeight>
+        <FontFamily>Body</FontFamily>
+        <CSSClass>text-xs</CSSClass>
+      </TypeStyle>
+    </TypeScale>
+
+    <!-- Mobile Type Scale -->
+    <TypeScale platform="Mobile">
+      <TypeStyle name="H1">
+        <FontSize unit="px">32</FontSize>
+        <FontWeight>700</FontWeight>
+        <LineHeight>1.2</LineHeight>
+      </TypeStyle>
+      <TypeStyle name="H2">
+        <FontSize unit="px">24</FontSize>
+        <FontWeight>700</FontWeight>
+        <LineHeight>1.3</LineHeight>
+      </TypeStyle>
+      <TypeStyle name="H3">
+        <FontSize unit="px">20</FontSize>
+        <FontWeight>600</FontWeight>
+        <LineHeight>1.4</LineHeight>
+      </TypeStyle>
+      <TypeStyle name="Body1">
+        <FontSize unit="px">16</FontSize>
+        <FontWeight>400</FontWeight>
+        <LineHeight>1.6</LineHeight>
+      </TypeStyle>
+    </TypeScale>
+  </Typography>
+
+  <!-- ========================================================================
+       4. 레이아웃 & 그리드 (Layout & Grid)
+       ======================================================================== -->
+  <Layout>
+    <!-- Container Settings -->
+    <Container>
+      <MaxWidth unit="px">1200</MaxWidth>
+      <Rationale>대형 모니터 대응, 본문 집중도 유지</Rationale>
+      <PaddingByDevice>
+        <Padding device="Mobile" unit="px">24</Padding>
+        <Padding device="Tablet" unit="px">48</Padding>
+        <Padding device="Desktop">auto</Padding>
+      </PaddingByDevice>
+      <CSSImplementation>
+        <![CDATA[
+          .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+          }
+          @media (min-width: 768px) {
+            .container { padding: 0 48px; }
+          }
+          @media (min-width: 1024px) {
+            .container { padding: 0; }
+          }
+        ]]>
+      </CSSImplementation>
+    </Container>
+
+    <!-- Breakpoints -->
+    <Breakpoints>
+      <Breakpoint name="Mobile">
+        <MaxWidth unit="px">767</MaxWidth>
+        <Columns>1</Columns>
+        <Description>1 Column 레이아웃</Description>
+      </Breakpoint>
+      <Breakpoint name="Tablet">
+        <MinWidth unit="px">768</MinWidth>
+        <MaxWidth unit="px">1023</MaxWidth>
+        <Columns>2</Columns>
+        <Description>2 Columns 레이아웃</Description>
+      </Breakpoint>
+      <Breakpoint name="Desktop">
+        <MinWidth unit="px">1024</MinWidth>
+        <Columns>3-4</Columns>
+        <Description>3-4 Columns for Cards</Description>
+      </Breakpoint>
+      <TailwindConfig>
+        <![CDATA[
+          // tailwind.config.js
+          screens: {
+            'sm': '640px',
+            'md': '768px',
+            'lg': '1024px',
+            'xl': '1280px',
+          }
+        ]]>
+      </TailwindConfig>
+    </Breakpoints>
+
+    <!-- Spacing System -->
+    <Spacing>
+      <Guideline>여백을 적극적으로 활용하여 "여유 있는" 학술적 분위기를 연출합니다.</Guideline>
+      <BaseUnit unit="px">8</BaseUnit>
+      <SpacingScale>
+        <Space name="xs" multiplier="1" value="8px" />
+        <Space name="sm" multiplier="2" value="16px" />
+        <Space name="md" multiplier="3" value="24px" />
+        <Space name="lg" multiplier="4" value="32px" />
+        <Space name="xl" multiplier="5" value="40px" />
+        <Space name="2xl" multiplier="6" value="48px" />
+        <Space name="3xl" multiplier="8" value="64px" />
+        <Space name="4xl" multiplier="10" value="80px" />
+        <Space name="5xl" multiplier="12" value="96px" />
+        <Space name="6xl" multiplier="15" value="120px" />
+      </SpacingScale>
+      <UsageGuide>
+        <SectionGap min="80px" max="120px" description="섹션 간 간격" />
+        <ElementGap options="16px, 24px, 32px" description="요소 간 간격" />
+        <CardGap value="24px" description="카드 사이 간격" />
+      </UsageGuide>
+    </Spacing>
+  </Layout>
+
+  <!-- ========================================================================
+       5. 컴포넌트 규격 (Component Specifications)
+       ======================================================================== -->
+  <Components>
+
+    <!-- 5.1 버튼 (Buttons) -->
+    <Component name="Button" description="버튼">
+      <Guideline>AI 기업 트렌드인 "Pill Shape" (완전한 둥근 모서리)를 적용합니다.</Guideline>
+
+      <Variant name="Primary">
+        <Shape>Rounded Full (Pill)</Shape>
+        <BorderRadius>9999px</BorderRadius>
+        <Background>
+          <Default>#0F172A</Default>
+          <Hover>rgba(15, 23, 42, 0.9)</Hover>
+          <Active>#1E293B</Active>
+          <Disabled>#94A3B8</Disabled>
+        </Background>
+        <TextColor>#FFFFFF</TextColor>
+        <Padding vertical="12px" horizontal="24px" />
+        <FontSize>16px</FontSize>
+        <FontWeight>500</FontWeight>
+        <Transition>all 200ms ease-out</Transition>
+        <HoverEffect>opacity: 0.9 or transform: scale(1.05)</HoverEffect>
+        <CSSExample>
+          <![CDATA[
+            .btn-primary {
+              background-color: #0F172A;
+              color: #FFFFFF;
+              padding: 12px 24px;
+              border-radius: 9999px;
+              font-weight: 500;
+              transition: all 200ms ease-out;
+            }
+            .btn-primary:hover {
+              opacity: 0.9;
+              transform: scale(1.02);
+            }
+          ]]>
+        </CSSExample>
+        <TailwindClass>bg-slate-900 text-white px-6 py-3 rounded-full font-medium hover:opacity-90 transition-all</TailwindClass>
+      </Variant>
+
+      <Variant name="Secondary">
+        <Shape>Rounded Full (Pill)</Shape>
+        <BorderRadius>9999px</BorderRadius>
+        <Background>
+          <Default>transparent</Default>
+          <Hover>#F1F5F9</Hover>
+        </Background>
+        <Border>1px solid #CBD5E1</Border>
+        <TextColor>#0F172A</TextColor>
+        <Padding vertical="12px" horizontal="24px" />
+        <TailwindClass>bg-transparent border border-slate-300 text-slate-900 px-6 py-3 rounded-full hover:bg-slate-100 transition-all</TailwindClass>
+      </Variant>
+
+      <Variant name="Ghost">
+        <Shape>Rounded Full</Shape>
+        <Background>transparent</Background>
+        <Border>none</Border>
+        <TextColor>#0F172A</TextColor>
+        <HoverEffect>background: #F1F5F9</HoverEffect>
+        <TailwindClass>bg-transparent text-slate-900 px-4 py-2 rounded-full hover:bg-slate-100 transition-all</TailwindClass>
+      </Variant>
+
+      <Variant name="Link">
+        <Background>transparent</Background>
+        <TextColor>#3B82F6</TextColor>
+        <TextDecoration>underline on hover</TextDecoration>
+        <TailwindClass>text-blue-500 hover:underline</TailwindClass>
+      </Variant>
+
+      <SizeVariants>
+        <Size name="Small" padding="8px 16px" fontSize="14px" />
+        <Size name="Medium" padding="12px 24px" fontSize="16px" />
+        <Size name="Large" padding="16px 32px" fontSize="18px" />
+      </SizeVariants>
+    </Component>
+
+    <!-- 5.2 카드 (Cards) -->
+    <Component name="Card" description="카드 - 논문/리포트">
+      <Guideline>OpenAI Research 스타일의 미니멀리즘을 지향합니다. 그림자보다는 "선(Border)" 중심의 깔끔한 디자인.</Guideline>
+
+      <Variant name="ResearchCard">
+        <Background>
+          <OnCreamBg>#FFFFFF</OnCreamBg>
+          <OnWhiteBg>transparent</OnWhiteBg>
+        </Background>
+        <Border>1px solid #E2E8F0</Border>
+        <BorderRadius>12px</BorderRadius>
+        <Shadow>
+          <Default>none</Default>
+          <Hover>0 4px 6px -1px rgba(0, 0, 0, 0.05)</Hover>
+        </Shadow>
+        <Padding>24px</Padding>
+        <Transition>box-shadow 200ms ease-out, transform 200ms ease-out</Transition>
+        <HoverTransform>translateY(-2px)</HoverTransform>
+
+        <ContentStructure>
+          <Element order="1" name="CategoryTag">
+            <FontSize>12px</FontSize>
+            <FontWeight>600</FontWeight>
+            <TextTransform>uppercase</TextTransform>
+            <Color>#3B82F6</Color>
+            <MarginBottom>8px</MarginBottom>
+          </Element>
+          <Element order="2" name="Date">
+            <FontSize>14px</FontSize>
+            <Color>#64748B</Color>
+            <MarginBottom>8px</MarginBottom>
+          </Element>
+          <Element order="3" name="Title">
+            <FontFamily>Headings (Serif)</FontFamily>
+            <FontSize>20px</FontSize>
+            <FontWeight>600</FontWeight>
+            <Color>#0F172A</Color>
+            <LineClamp>2</LineClamp>
+            <MarginBottom>12px</MarginBottom>
+            <HoverEffect>text-decoration: underline</HoverEffect>
+          </Element>
+          <Element order="4" name="Abstract">
+            <FontFamily>Body (Sans-serif)</FontFamily>
+            <FontSize>16px</FontSize>
+            <Color>#64748B</Color>
+            <LineClamp>3</LineClamp>
+            <MarginBottom>16px</MarginBottom>
+          </Element>
+          <Element order="5" name="Authors">
+            <FontSize>14px</FontSize>
+            <Color>#64748B</Color>
+          </Element>
+        </ContentStructure>
+
+        <CSSExample>
+          <![CDATA[
+            .research-card {
+              background: #FFFFFF;
+              border: 1px solid #E2E8F0;
+              border-radius: 12px;
+              padding: 24px;
+              transition: box-shadow 200ms ease-out, transform 200ms ease-out;
+            }
+            .research-card:hover {
+              box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+              transform: translateY(-2px);
+            }
+          ]]>
+        </CSSExample>
+      </Variant>
+
+      <Variant name="TeamMemberCard">
+        <Layout>vertical-centered</Layout>
+        <Background>#FFFFFF</Background>
+        <Border>1px solid #E2E8F0</Border>
+        <BorderRadius>16px</BorderRadius>
+        <Padding>32px</Padding>
+        <ContentStructure>
+          <Element order="1" name="Avatar">
+            <Size>120px</Size>
+            <BorderRadius>50%</BorderRadius>
+            <MarginBottom>16px</MarginBottom>
+          </Element>
+          <Element order="2" name="Name">
+            <FontSize>20px</FontSize>
+            <FontWeight>600</FontWeight>
+            <FontFamily>Headings</FontFamily>
+          </Element>
+          <Element order="3" name="Position">
+            <FontSize>14px</FontSize>
+            <Color>#64748B</Color>
+          </Element>
+          <Element order="4" name="Bio">
+            <FontSize>14px</FontSize>
+            <LineClamp>3</LineClamp>
+          </Element>
+        </ContentStructure>
+      </Variant>
+    </Component>
+
+    <!-- 5.3 입력 폼 (Input Fields) -->
+    <Component name="InputField" description="입력 폼">
+      <Variant name="Default">
+        <Background>#FFFFFF</Background>
+        <Border>1px solid #E2E8F0</Border>
+        <BorderRadius>8px</BorderRadius>
+        <Padding>12px 16px</Padding>
+        <FontSize>16px</FontSize>
+        <Color>#0F172A</Color>
+        <PlaceholderColor>#94A3B8</PlaceholderColor>
+        <States>
+          <State name="Focus">
+            <BorderColor>#3B82F6</BorderColor>
+            <Outline>none</Outline>
+            <RingEffect>none (깔끔함 유지)</RingEffect>
+          </State>
+          <State name="Error">
+            <BorderColor>#EF4444</BorderColor>
+          </State>
+          <State name="Disabled">
+            <Background>#F1F5F9</Background>
+            <Cursor>not-allowed</Cursor>
+          </State>
+        </States>
+        <CSSExample>
+          <![CDATA[
+            .input-field {
+              background: #FFFFFF;
+              border: 1px solid #E2E8F0;
+              border-radius: 8px;
+              padding: 12px 16px;
+              font-size: 16px;
+              color: #0F172A;
+              transition: border-color 200ms ease-out;
+            }
+            .input-field:focus {
+              border-color: #3B82F6;
+              outline: none;
+            }
+            .input-field::placeholder {
+              color: #94A3B8;
+            }
+          ]]>
+        </CSSExample>
+        <TailwindClass>w-full bg-white border border-slate-200 rounded-lg px-4 py-3 text-slate-900 placeholder-slate-400 focus:border-blue-500 focus:outline-none transition-colors</TailwindClass>
+      </Variant>
+
+      <Variant name="Underline">
+        <Background>transparent</Background>
+        <Border>none</Border>
+        <BorderBottom>1px solid #CBD5E1</BorderBottom>
+        <BorderRadius>0</BorderRadius>
+        <Padding>12px 0</Padding>
+        <FocusBorderColor>#3B82F6</FocusBorderColor>
+      </Variant>
+
+      <Variant name="Textarea">
+        <MinHeight>120px</MinHeight>
+        <Resize>vertical</Resize>
+        <OtherStyles>Default와 동일</OtherStyles>
+      </Variant>
+
+      <Variant name="Select">
+        <AppearanceNote>브라우저 기본 화살표 숨기고 커스텀 아이콘 사용</AppearanceNote>
+        <DropdownIcon>ChevronDown</DropdownIcon>
+      </Variant>
+    </Component>
+
+    <!-- 5.4 모달 (Modals) -->
+    <Component name="Modal" description="모달/다이얼로그">
+      <Overlay>
+        <Background>rgba(0, 0, 0, 0.5)</Background>
+        <BackdropFilter>blur(4px)</BackdropFilter>
+      </Overlay>
+      <Container>
+        <Background>#FFFFFF</Background>
+        <BorderRadius>16px</BorderRadius>
+        <Padding>24px</Padding>
+        <MaxWidth>500px</MaxWidth>
+        <Position>center</Position>
+        <Shadow>0 25px 50px -12px rgba(0, 0, 0, 0.25)</Shadow>
+      </Container>
+      <CloseButton>
+        <Position>top-right</Position>
+        <Offset>16px</Offset>
+        <Size>24px</Size>
+        <Icon>X</Icon>
+      </CloseButton>
+      <Animation>
+        <Entry>fade-in + scale from 0.95</Entry>
+        <Exit>fade-out + scale to 0.95</Exit>
+        <Duration>200ms</Duration>
+      </Animation>
+      <CSSExample>
+        <![CDATA[
+          .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+          .modal-container {
+            background: #FFFFFF;
+            border-radius: 16px;
+            padding: 24px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+          }
+        ]]>
+      </CSSExample>
+    </Component>
+
+    <!-- 5.5 챗봇 트리거 (Chatbot Trigger) -->
+    <Component name="ChatbotTrigger" description="AI 챗봇 트리거 버튼">
+      <Position>
+        <Type>fixed</Type>
+        <Bottom>32px</Bottom>
+        <Right>32px</Right>
+        <ZIndex>1000</ZIndex>
+      </Position>
+      <TriggerButton>
+        <Size>56px</Size>
+        <Shape>circle</Shape>
+        <Background>
+          <Type>gradient</Type>
+          <Value>linear-gradient(135deg, #3B82F6 0%, #1D4ED8 100%)</Value>
+          <Alternative>#0F172A (Solid Deep Navy)</Alternative>
+        </Background>
+        <Icon>
+          <Name>Sparkles / AI Star</Name>
+          <Color>#FFFFFF</Color>
+          <Size>24px</Size>
+        </Icon>
+        <Shadow>0 4px 14px rgba(59, 130, 246, 0.4)</Shadow>
+        <HoverEffect>
+          <Transform>scale(1.1)</Transform>
+          <Shadow>0 6px 20px rgba(59, 130, 246, 0.5)</Shadow>
+        </HoverEffect>
+      </TriggerButton>
+      <ChatPanel>
+        <Interaction>Click 시 확장되며 채팅 패널 Slide-up</Interaction>
+        <Width>380px</Width>
+        <Height>500px</Height>
+        <MaxHeight>80vh</MaxHeight>
+        <BorderRadius>16px</BorderRadius>
+        <Background>#FFFFFF</Background>
+        <Shadow>0 25px 50px -12px rgba(0, 0, 0, 0.25)</Shadow>
+        <Animation>
+          <Type>slide-up + fade-in</Type>
+          <Duration>300ms</Duration>
+          <Easing>ease-out</Easing>
+        </Animation>
+      </ChatPanel>
+      <CSSExample>
+        <![CDATA[
+          .chatbot-trigger {
+            position: fixed;
+            bottom: 32px;
+            right: 32px;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #3B82F6 0%, #1D4ED8 100%);
+            color: #FFFFFF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 14px rgba(59, 130, 246, 0.4);
+            cursor: pointer;
+            transition: all 200ms ease-out;
+            z-index: 1000;
+          }
+          .chatbot-trigger:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5);
+          }
+        ]]>
+      </CSSExample>
+    </Component>
+
+    <!-- 5.6 네비게이션 (Navigation) -->
+    <Component name="Navigation" description="헤더 네비게이션">
+      <Header>
+        <Position>sticky</Position>
+        <Top>0</Top>
+        <ZIndex>100</ZIndex>
+        <Background>rgba(249, 247, 242, 0.9)</Background>
+        <BackdropFilter>blur(8px)</BackdropFilter>
+        <Height>64px</Height>
+        <BorderBottom>1px solid rgba(226, 232, 240, 0.5)</BorderBottom>
+      </Header>
+      <Logo>
+        <Position>left</Position>
+        <MaxHeight>40px</MaxHeight>
+      </Logo>
+      <NavLinks>
+        <FontSize>16px</FontSize>
+        <FontWeight>500</FontWeight>
+        <Color>
+          <Default>#0F172A</Default>
+          <Hover>#3B82F6</Hover>
+          <Active>#3B82F6</Active>
+        </Color>
+        <Spacing>32px</Spacing>
+      </NavLinks>
+      <MobileMenu>
+        <TriggerIcon>Hamburger (3 lines)</TriggerIcon>
+        <PanelType>Slide-in from right</PanelType>
+        <PanelWidth>280px</PanelWidth>
+      </MobileMenu>
+    </Component>
+
+    <!-- 5.7 푸터 (Footer) -->
+    <Component name="Footer" description="푸터">
+      <Background>#0F172A</Background>
+      <TextColor>#FFFFFF</TextColor>
+      <Padding vertical="64px" horizontal="container" />
+      <Layout>
+        <Desktop>4-column grid</Desktop>
+        <Mobile>stacked</Mobile>
+      </Layout>
+      <Sections>
+        <Section name="Logo & Description">
+          <Content>연구소 로고 및 간략 소개</Content>
+        </Section>
+        <Section name="Quick Links">
+          <Content>주요 페이지 링크</Content>
+        </Section>
+        <Section name="Research">
+          <Content>연구 분야 링크</Content>
+        </Section>
+        <Section name="Contact">
+          <Content>연락처 및 소셜 미디어</Content>
+        </Section>
+      </Sections>
+      <Copyright>
+        <FontSize>14px</FontSize>
+        <Color>#94A3B8</Color>
+        <BorderTop>1px solid rgba(148, 163, 184, 0.2)</BorderTop>
+        <PaddingTop>24px</PaddingTop>
+      </Copyright>
+    </Component>
+
+    <!-- 5.8 알림/토스트 (Toast/Notification) -->
+    <Component name="Toast" description="토스트 알림">
+      <Position>top-right</Position>
+      <Offset top="24px" right="24px" />
+      <MinWidth>300px</MinWidth>
+      <Padding>16px</Padding>
+      <BorderRadius>12px</BorderRadius>
+      <Shadow>0 10px 15px -3px rgba(0, 0, 0, 0.1)</Shadow>
+      <Animation>slide-in-right + fade</Animation>
+      <Duration autoClose="5000ms" />
+      <Variants>
+        <Variant name="Success">
+          <Background>#ECFDF5</Background>
+          <BorderLeft>4px solid #22C55E</BorderLeft>
+          <IconColor>#22C55E</IconColor>
+        </Variant>
+        <Variant name="Error">
+          <Background>#FEF2F2</Background>
+          <BorderLeft>4px solid #EF4444</BorderLeft>
+          <IconColor>#EF4444</IconColor>
+        </Variant>
+        <Variant name="Warning">
+          <Background>#FFFBEB</Background>
+          <BorderLeft>4px solid #F59E0B</BorderLeft>
+          <IconColor>#F59E0B</IconColor>
+        </Variant>
+        <Variant name="Info">
+          <Background>#EFF6FF</Background>
+          <BorderLeft>4px solid #3B82F6</BorderLeft>
+          <IconColor>#3B82F6</IconColor>
+        </Variant>
+      </Variants>
+    </Component>
+
+    <!-- 5.9 태그/뱃지 (Tag/Badge) -->
+    <Component name="Tag" description="태그/카테고리 뱃지">
+      <Variant name="Default">
+        <Background>#EFF6FF</Background>
+        <TextColor>#3B82F6</TextColor>
+        <Padding horizontal="12px" vertical="4px" />
+        <BorderRadius>9999px</BorderRadius>
+        <FontSize>12px</FontSize>
+        <FontWeight>600</FontWeight>
+        <TextTransform>uppercase</TextTransform>
+      </Variant>
+      <Variant name="Outline">
+        <Background>transparent</Background>
+        <Border>1px solid #CBD5E1</Border>
+        <TextColor>#64748B</TextColor>
+      </Variant>
+    </Component>
+
+    <!-- 5.10 페이지네이션 (Pagination) -->
+    <Component name="Pagination" description="페이지네이션">
+      <ItemSize>40px</ItemSize>
+      <ItemShape>rounded (8px)</ItemShape>
+      <Gap>8px</Gap>
+      <States>
+        <State name="Default">
+          <Background>transparent</Background>
+          <TextColor>#64748B</TextColor>
+        </State>
+        <State name="Hover">
+          <Background>#F1F5F9</Background>
+        </State>
+        <State name="Active">
+          <Background>#0F172A</Background>
+          <TextColor>#FFFFFF</TextColor>
+        </State>
+        <State name="Disabled">
+          <Opacity>0.5</Opacity>
+          <Cursor>not-allowed</Cursor>
+        </State>
+      </States>
+    </Component>
+
+  </Components>
+
+  <!-- ========================================================================
+       6. 아이콘 시스템 (Icon System)
+       ======================================================================== -->
+  <IconSystem>
+    <Library>Lucide Icons (recommended)</Library>
+    <AlternativeLibraries>
+      <Library>Heroicons</Library>
+      <Library>Phosphor Icons</Library>
+    </AlternativeLibraries>
+    <DefaultSize>24px</DefaultSize>
+    <StrokeWidth>2px</StrokeWidth>
+    <Sizes>
+      <Size name="sm">16px</Size>
+      <Size name="md">24px</Size>
+      <Size name="lg">32px</Size>
+    </Sizes>
+    <CommonIcons>
+      <Icon name="Menu" usage="Mobile navigation toggle" />
+      <Icon name="X" usage="Close button" />
+      <Icon name="Search" usage="Search functionality" />
+      <Icon name="ChevronDown" usage="Dropdown indicator" />
+      <Icon name="ChevronRight" usage="Link/navigation indicator" />
+      <Icon name="Download" usage="File download" />
+      <Icon name="FileText" usage="Document/Paper" />
+      <Icon name="Users" usage="Team members" />
+      <Icon name="Mail" usage="Contact" />
+      <Icon name="Sparkles" usage="AI Chatbot trigger" />
+      <Icon name="Send" usage="Chat message send" />
+      <Icon name="ArrowRight" usage="CTA buttons" />
+    </CommonIcons>
+  </IconSystem>
+
+  <!-- ========================================================================
+       7. 애니메이션 & 트랜지션 (Animation & Transitions)
+       ======================================================================== -->
+  <Animation>
+    <GlobalTransition>
+      <Duration>200ms</Duration>
+      <Easing>ease-out</Easing>
+      <Properties>all</Properties>
+      <CSSVariable>--transition-default: all 200ms ease-out;</CSSVariable>
+    </GlobalTransition>
+
+    <Hover>
+      <Buttons>opacity: 0.9 or scale: 1.02</Buttons>
+      <Cards>translateY(-2px) + shadow increase</Cards>
+      <Links>color change or underline</Links>
+    </Hover>
+
+    <PageLoad animation="FadeInUp">
+      <Description>페이지 로드 시 텍스트/요소가 아래에서 위로 살짝 떠오르는 효과</Description>
+      <TranslateY from="20px" to="0" />
+      <Opacity from="0" to="1" />
+      <Duration>500ms</Duration>
+      <Easing>ease-out</Easing>
+      <Stagger>100ms</Stagger>
+      <CSSKeyframes>
+        <![CDATA[
+          @keyframes fadeInUp {
+            from {
+              opacity: 0;
+              transform: translateY(20px);
+            }
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+          .animate-fadeInUp {
+            animation: fadeInUp 500ms ease-out forwards;
+          }
+        ]]>
+      </CSSKeyframes>
+    </PageLoad>
+
+    <Modal>
+      <Entry>fade-in + scale from 0.95</Entry>
+      <Exit>fade-out + scale to 0.95</Exit>
+      <Duration>200ms</Duration>
+    </Modal>
+
+    <SlidePanel>
+      <Entry>slide from edge + fade</Entry>
+      <Exit>slide to edge + fade</Exit>
+      <Duration>300ms</Duration>
+    </SlidePanel>
+  </Animation>
+
+  <!-- ========================================================================
+       8. 웹 접근성 (Accessibility)
+       ======================================================================== -->
+  <Accessibility>
+    <ColorContrast>
+      <Minimum ratio="4.5:1" scope="Normal Text" />
+      <Minimum ratio="3:1" scope="Large Text (18px+ or 14px+ bold)" />
+      <Guideline>특히 텍스트 색상에서 명도비 준수 필수</Guideline>
+    </ColorContrast>
+
+    <Images>
+      <Rule>모든 이미지에 alt 태그 필수</Rule>
+      <DecorativeImages alt="" role="presentation" />
+    </Images>
+
+    <Keyboard>
+      <FocusRing>
+        <Style>outline: 2px solid #3B82F6; outline-offset: 2px;</Style>
+        <Visibility>visible on keyboard navigation</Visibility>
+      </FocusRing>
+      <TabOrder>Logical flow following visual layout</TabOrder>
+    </Keyboard>
+
+    <ARIA>
+      <Landmarks>header, nav, main, footer 명시</Landmarks>
+      <Labels>모든 인터랙티브 요소에 접근 가능한 이름 제공</Labels>
+      <LiveRegions>동적 콘텐츠 업데이트 시 aria-live 사용</LiveRegions>
+    </ARIA>
+
+    <ScreenReader>
+      <SkipLink>본문 바로가기 링크 제공</SkipLink>
+      <HeadingHierarchy>h1 ~ h6 순서 준수</HeadingHierarchy>
+    </ScreenReader>
+  </Accessibility>
+
+  <!-- ========================================================================
+       9. 개발 가이드라인 (Implementation Notes)
+       ======================================================================== -->
+  <Implementation>
+    <CSSFramework>
+      <Recommended>TailwindCSS</Recommended>
+      <Rationale>유틸리티 퍼스트로 빠른 구현</Rationale>
+      <CustomConfig>
+        <![CDATA[
+          // tailwind.config.js
+          module.exports = {
+            theme: {
+              extend: {
+                colors: {
+                  'deep-navy': '#0F172A',
+                  'warm-cream': '#F9F7F2',
+                  'ai-blue': '#3B82F6',
+                },
+                fontFamily: {
+                  'heading': ['Merriweather', 'Noto Serif KR', 'serif'],
+                  'body': ['Inter', 'Pretendard', 'sans-serif'],
+                },
+                borderRadius: {
+                  'pill': '9999px',
+                },
+              },
+            },
+          }
+        ]]>
+      </CustomConfig>
+    </CSSFramework>
+
+    <ComponentLibrary>
+      <Recommended>Radix UI Primitives</Recommended>
+      <Alternative>Headless UI</Alternative>
+      <Rationale>접근성 내장, 스타일링 자유도</Rationale>
+    </ComponentLibrary>
+
+    <StateManagement>
+      <ClientState>React useState / Zustand</ClientState>
+      <ServerState>TanStack Query (React Query)</ServerState>
+    </StateManagement>
+
+    <FileNaming>
+      <Components>PascalCase (e.g., ResearchCard.tsx)</Components>
+      <Utilities>camelCase (e.g., formatDate.ts)</Utilities>
+      <Styles>kebab-case (e.g., research-card.css)</Styles>
+    </FileNaming>
+
+    <FolderStructure>
+      <![CDATA[
+        /src
+          /components
+            /ui          # 기본 UI 컴포넌트 (Button, Card, Input)
+            /layout      # 레이아웃 컴포넌트 (Header, Footer, Container)
+            /features    # 기능별 컴포넌트 (ResearchCard, TeamMember)
+          /pages         # 페이지 컴포넌트
+          /styles        # 글로벌 스타일
+          /lib           # 유틸리티 함수
+          /hooks         # 커스텀 훅
+          /types         # TypeScript 타입
+      ]]>
+    </FolderStructure>
+  </Implementation>
+
+  <!-- ========================================================================
+       10. 반응형 전략 (Responsive Strategy)
+       ======================================================================== -->
+  <ResponsiveStrategy>
+    <Approach>Mobile-First</Approach>
+    <Breakpoints>
+      <Breakpoint name="base" description="0px - 767px / Mobile" />
+      <Breakpoint name="md" description="768px - 1023px / Tablet" />
+      <Breakpoint name="lg" description="1024px+ / Desktop" />
+    </Breakpoints>
+
+    <LayoutChanges>
+      <Navigation>
+        <Mobile>Hamburger menu with slide-out panel</Mobile>
+        <Desktop>Horizontal nav links</Desktop>
+      </Navigation>
+      <CardGrid>
+        <Mobile>1 column</Mobile>
+        <Tablet>2 columns</Tablet>
+        <Desktop>3-4 columns</Desktop>
+      </CardGrid>
+      <Typography>
+        <Mobile>H1: 32px, Body: 16px</Mobile>
+        <Desktop>H1: 48px, Body: 18px</Desktop>
+      </Typography>
+      <Spacing>
+        <Mobile>Section gap: 48px</Mobile>
+        <Desktop>Section gap: 80-120px</Desktop>
+      </Spacing>
+    </LayoutChanges>
+
+    <TouchTargets>
+      <MinSize>44px x 44px</MinSize>
+      <Rationale>모바일 터치 영역 최소 크기 준수</Rationale>
+    </TouchTargets>
+  </ResponsiveStrategy>
+
+</UIUXSpecification>
